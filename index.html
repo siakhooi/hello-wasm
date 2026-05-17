@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello WASM</title>
+  </head>
+  <body>
+    <h1>Hello WASM</h1>
+    <pre id="output"></pre>
+    <script>
+      var Module = {
+        print: function (text) {
+          document.getElementById("output").textContent += text + "\n";
+          console.log(text);
+        },
+      };
+    </script>
+    <script src="hello.js"></script>
+  </body>
+</html>
