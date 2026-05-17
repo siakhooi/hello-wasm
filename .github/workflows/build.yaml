@@ -1,0 +1,26 @@
+name: build
+
+on:
+  push:
+    branches:
+      - "*"
+  workflow_call:
+  pull_request:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+      - uses: emscripten-core/setup-emsdk@4528d102f7230f0e7b276855c01ea1159be0e984  # v16
+
+      - run: scripts/build.sh
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: target
+          path: |
+            ./docs/hello.js
+            ./docs/hello.wasm
