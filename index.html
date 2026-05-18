@@ -6,15 +6,33 @@
   </head>
   <body>
     <h1>Hello WASM</h1>
-    <pre id="output"></pre>
     <script>
       var Module = {
         print: function (text) {
           document.getElementById("output").textContent += text + "\n";
           console.log(text);
         },
+        doAdd: function (a, b) {
+          return Module.ccall("doAddition", "number", ["number", "number"], [a, b]);
+        }
       };
     </script>
     <script src="hello.js"></script>
+    <input id="inputA" type="number" placeholder="Enter first number" value="2" />
+    <input id="inputB" type="number" placeholder="Enter second number" value="3" />
+    <button onclick="performAddition()">Add</button>
+    <p id="add_output"></p>
+    <script>
+      function performAddition() {
+        var a = parseInt(document.getElementById("inputA").value);
+        var b = parseInt(document.getElementById("inputB").value);
+        var result = Module.doAdd(a, b);
+        document.getElementById("add_output").textContent = "Result: " + result;
+      }
+    </script>
+    <div>
+    <p>Console (Print):</p>
+    <pre id="output"></pre>
+    </div>
   </body>
 </html>
