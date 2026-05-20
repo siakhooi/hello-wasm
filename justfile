@@ -18,3 +18,6 @@ release:
     --title "{{ release_title }}" \
     --notes "{{ release_notes }}" \
     --latest
+
+serve:
+    python3 -m http.server --directory docs
