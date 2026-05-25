@@ -13,8 +13,8 @@ fi
 : "${CC:=cc}"
 mkdir -p tests
 
-"$CC" -std=c11 -Wall -Wextra -Werror -Isrc \
-  tests/test_add.c src/add.c \
+"$CC" -std=c11 -Wall -Wextra -Werror -Isrc -Ithird_party/unity \
+  tests/test_add.c src/add.c third_party/unity/unity.c \
   -o tests/test_runner
 
 exec ./tests/test_runner

@@ -36,3 +36,12 @@ release:
 
 serve:
     python3 -m http.server --directory docs
+
+download-unity:
+    mkdir -p third_party/unity
+    curl -fsSL -o third_party/unity/unity.c \
+    https://raw.githubusercontent.com/ThrowTheSwitch/Unity/master/src/unity.c
+    curl -fsSL -o third_party/unity/unity.h \
+    https://raw.githubusercontent.com/ThrowTheSwitch/Unity/master/src/unity.h
+    curl -fsSL -o third_party/unity/unity_internals.h \
+    https://raw.githubusercontent.com/ThrowTheSwitch/Unity/master/src/unity_internals.h
