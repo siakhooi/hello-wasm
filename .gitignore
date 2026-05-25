@@ -1,2 +1,5 @@
 docs/hello.js
 docs/hello.wasm
+tests/test_runner
+coverage/
+*.gcov

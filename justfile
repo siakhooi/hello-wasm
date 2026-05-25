@@ -1,10 +1,25 @@
 build:
     scripts/build.sh
 
+test:
+    scripts/test.sh
+
+# for lcov/genhtml
+install-lcov:
+	apt install lcov
+coverage:
+    scripts/coverage.sh
+
 clean:
-    rm -f docs/hello.js docs/hello.wasm
+    rm -f docs/hello.js docs/hello.wasm tests/test_runner
+    rm -rf coverage
 
 root := justfile_directory()
+
+coverage-in-docker:
+    docker run --rm -u "$(id -u):$(id -g)" -v "{{ root }}":/workspace -w /workspace emscripten/emsdk scripts/coverage.sh
+test-in-docker:
+    docker run --rm -u "$(id -u):$(id -g)" -v "{{ root }}":/workspace -w /workspace emscripten/emsdk scripts/test.sh
 
 build-in-docker: clean
     docker run --rm -u "$(id -u):$(id -g)" -v "{{ root }}":/workspace -w /workspace emscripten/emsdk scripts/build.sh

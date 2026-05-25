@@ -9,6 +9,6 @@ fi
 
 mkdir -p docs
 
-emcc src/hello.c -O2 \
+emcc src/hello.c src/add.c -O2 \
   -s  EXPORTED_RUNTIME_METHODS='["ccall"]' \
   -o docs/hello.js
